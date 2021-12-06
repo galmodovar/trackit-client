@@ -6,6 +6,7 @@ export const Register = () => {
     const firstName = useRef()
     const lastName = useRef()
     const username = useRef()
+    const email  = useRef()
     const occupation = useRef()
     const password = useRef()
     const verifyPassword = useRef()
@@ -20,6 +21,7 @@ export const Register = () => {
                 "username": username.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
+                "email": email.current.value,
                 "occupation": occupation.current.value,
                 "password": password.current.value
             }
@@ -65,6 +67,10 @@ export const Register = () => {
                 <fieldset>
                     <label htmlFor="inputUsername">Username</label>
                     <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="inputUsername">Email</label>
+                    <input ref={email} type="text" name="email" className="form-control" placeholder="Username" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="verifyPassword"> Occupation </label>
