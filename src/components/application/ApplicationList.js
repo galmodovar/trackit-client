@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react"
 import { getApplications } from "./ApplicationManager.js"
+import { ApplicationCard } from "./ApplicationCard.js"
+import { useHistory } from "react-router"
 
 export const ApplicationList = () => {
-    const [ applications, setApplications ] = useState([])
+    const history = useHistory()
 
-    useEffect(() => {
-        getApplications().then(data => setApplications(data))
-    }, [])
 
     return (
+        <section>
+        <button className="btn btn-2 btn-sep icon-create"
+                onClick={() => {
+                    history.push({ pathname: "/applications/new" })
+                    }}>Add New Application
+        </button>
         <article className="applications">
-            {
-                applications.map(application => {
-                    return <section key={`application--${application.id}`} className="application">
-                        <div className="application__role">{application.job_post.role} by {application.job_post.company}</div>
-                        <div className="application__date">Date Applied: {application.date_applied}</div>
-                        <div className="application__status">Currently in {application.status.status}</div>
-                    </section>
-                })
-            }
+            <ApplicationCard />
         </article>
+        <article className="applications">
+     
+        </article>
+        <article className="applications">
+        
+        </article>
+        </section>
     )
 }
