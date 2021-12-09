@@ -20,7 +20,8 @@ export const ApplicationForm = () => {
     dateApplied: "",
     stageId: "",
     statusId: "",
-    JobId: ""
+    JobId: "",
+    skills:[]
   })
   const [activeStep, setActiveStep] = useState(1);
 
@@ -44,10 +45,18 @@ export const ApplicationForm = () => {
   const handleAppData = input => e => {
     const { value } = e.target;
 
-    setAppData(prevState => ({
-      ...prevState,
-      [input]: value
-  }));
+    if (input !== 'skills') {
+      setAppData(prevState => ({
+        ...prevState,
+        [input]: value
+    }));
+    } else {
+      setAppData(prevState => ({
+        ...prevState,
+        [input]: [input].push(value)
+      }))
+    }
+
   }
 
 
