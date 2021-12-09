@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { getStages, getStatus, getTypes } from '../application/ApplicationManager'
+import { getJobs, getStages, getStatus, submitAppInfo } from '../application/ApplicationManager'
 
 
 
-const FormAppInfo = ({ handleNext, handleBack, appData, handleAppData }) => {
+const FormAppInfo = ({ handleNext, handleBack, appData, jobData, handleAppData }) => {
     const [stages, setStages] = useState([])
     const [status, setStatus] = useState([])
-    const [types, setTypes] = useState([])
+    const [jobs, setJobs] = useState([])
+    
+  
 
     useEffect(() => {
         getStages().then(data => setStages(data))
@@ -15,10 +17,11 @@ const FormAppInfo = ({ handleNext, handleBack, appData, handleAppData }) => {
     useEffect(() => {
         getStatus().then(data => setStatus(data))
     }, [])
-    
+
     useEffect(() => {
-        getTypes().then(data => setTypes(data))
+        getJobs().then(data => setJobs(data))
     }, [])
+    
 
     return (
         <form className="jobInfo">
@@ -59,6 +62,21 @@ const FormAppInfo = ({ handleNext, handleBack, appData, handleAppData }) => {
         </fieldset>
         <fieldset>
             <div className="form-group">
+                <label htmlFor="title">Job: </label>
+                <select name="stage" className="form-control"
+                        value={ appData.jobId }
+                        onChange={ handleAppData('jobId') }>
+                        <option value="0">Job...</option>
+                        {
+                            jobs?.map(job => (
+                                <option value={job.id}>{job.role} for {job.company}</option>
+                            ))
+                        }
+                </select>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div className="form-group">
                 <label htmlFor="title">Status: </label>
                 <select name="status" className="form-control"
                         value={ appData.statusId }
@@ -72,25 +90,6 @@ const FormAppInfo = ({ handleNext, handleBack, appData, handleAppData }) => {
                 </select>
             </div>
         </fieldset>
-        <fieldset>
-            <div className="form-group">
-                <label htmlFor="title">Job Type: </label>
-                        {
-                            types.map(type => (
-               
-                                <button type="submit" name='skills' className="btn btn-2 btn-sep icon-create"
-                                        value={ type.id }
-                                        onClick={evt => {
-                                            evt.preventDefault()
-                                            handleAppData(type.id)
-                                            console.log(appData.skills)
-                                            }}>{type.job_type}
-                                </button>
-                                            
-                            ))
-                        }
-            </div>
-        </fieldset>
         <button type="submit"
             onClick={evt => {
                 // Prevent form from being submitted
@@ -102,9 +101,10 @@ const FormAppInfo = ({ handleNext, handleBack, appData, handleAppData }) => {
             onClick={evt => {
                 // Prevent form from being submitted
                 evt.preventDefault()
-                {handleNext()}
+                submitAppInfo(appData)
+                .then(() => handleNext())
             }}
-            className="btn btn-2 btn-sep icon-create">Next</button>
+            className="btn btn-2 btn-sep icon-create">Submit App Info</button>
     </form>
     )
 }

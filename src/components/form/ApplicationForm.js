@@ -1,11 +1,15 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormJobInfo from "./FormJobInfo";
 import FormAppInfo from "./FormAppInfo";
+import Confirm from "./Confirm";
+import { useParams } from "react-router-dom";
+import { getAppById } from "../application/ApplicationManager";
 
 
 
 export const ApplicationForm = () => {
+  const { applicationId } = useParams
   const [jobData, setJobData] = useState({
     company: "",
     companyUrl: "",
@@ -20,8 +24,11 @@ export const ApplicationForm = () => {
     dateApplied: "",
     stageId: "",
     statusId: "",
-    JobId: "",
-    skills:[]
+    jobId: ""
+  })
+  const [appTypeData, setAppTypeData] = useState({
+    applicationId: "",
+    jobTypeId: "",
   })
   const [activeStep, setActiveStep] = useState(1);
 
@@ -41,23 +48,34 @@ export const ApplicationForm = () => {
       [input]: value
   }));
   }
-
   const handleAppData = input => e => {
     const { value } = e.target;
 
-    if (input !== 'skills') {
       setAppData(prevState => ({
         ...prevState,
         [input]: value
     }));
-    } else {
-      setAppData(prevState => ({
-        ...prevState,
-        [input]: [input].push(value)
-      }))
     }
 
-  }
+    useEffect(() => {
+      if (applicationId) {
+        setActiveStep(2)
+          getAppById(applicationId)
+           .then(data => setAppData({
+               ...data,
+               applicationId: data.id,
+               response: "False",
+               notes: data.notes,
+               dateApplied: data.date_applied,
+               stageId: data.stage,
+               statusId: data.status,
+               jobId: data.job_post
+           }))
+      }
+
+  }, [applicationId])
+  
+
 
 
 
@@ -72,13 +90,13 @@ export const ApplicationForm = () => {
     case 2:
       return (
         <div className="App">
-            <FormAppInfo handleNext={handleNext} handleBack={handleBack} handleAppData={handleAppData} appData={appData} />
+            <FormAppInfo handleNext={handleNext} handleBack={handleBack} handleAppData={handleAppData} appData={appData} jobData={jobData} />
         </div>
       );
     case 3:
       return (
         <div className="App">
-                <h1>Confirm</h1>
+            <Confirm handleNext={handleNext} appData={appData} jobData={jobData} appTypeData={appTypeData} />
         </div>
       );
     default:

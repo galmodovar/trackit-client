@@ -1,4 +1,5 @@
 import React from 'react'
+import { submitJobInfo } from '../application/ApplicationManager'
 
 
 
@@ -68,9 +69,11 @@ const FormJobInfo = ({ handleNext, jobData, handleJobData }) => {
             onClick={evt => {
                 // Prevent form from being submitted
                 evt.preventDefault()
-                {handleNext()}
+
+                submitJobInfo(jobData)
+                .then(() => handleNext())
             }}
-            className="btn btn-2 btn-sep icon-create">Next</button>
+            className="btn btn-2 btn-sep icon-create">Submit Job Info</button>
     </form>
     )
 }

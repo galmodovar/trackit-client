@@ -7,6 +7,34 @@ export const getApplications = () => {
         .then(response => response.json())
 }
 
+export const getAppById = (applicationId) => {
+    return fetch(`http://localhost:8000/applications/${applicationId}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tr_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
+export const deleteApp = applicationId => {
+    return fetch(`http://localhost:8000/applications/${applicationId}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tr_token")}`
+        }
+    })
+        
+}
+
+export const getJobs = () => {
+    return fetch("http://localhost:8000/jobposts", {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tr_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const getStages = () => {
     return fetch("http://localhost:8000/stages", {
         headers:{
@@ -35,11 +63,41 @@ export const getTypes = () => {
 }
 
 export const addType = typeId => {
-    return fetch(`http://localhost:8000/events/${ typeId }/signup`, {
+    return fetch(`http://localhost:8000/applications/${ typeId }/type`, {
         method: "POST",
         headers:{
-            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+            "Authorization": `Token ${localStorage.getItem("tr_token")}`
         }
+    })      
+}
+
+export const removeType = typeId => {
+    return fetch(`http://localhost:8000/applications/${ typeId }/type`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tr_token")}`
+        }
+    })      
+}
+
+export const submitJobInfo = (job) => {
+    return fetch("http://localhost:8000/jobposts", {
+        method: "POST",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tr_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(job)
     })
-        
+}
+
+export const submitAppInfo = (app) => {
+    return fetch("http://localhost:8000/applications", {
+        method: "POST",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tr_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(app)
+    })
 }

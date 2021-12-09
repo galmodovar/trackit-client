@@ -16,6 +16,9 @@ export const ApplicationViews = () => {
             <Route exact path="/applications/new">
                 <ApplicationForm />
             </Route>
+            <Route exact path="/applications/edit/:applicationId">
+                <ApplicationForm />
+            </Route>
         </main>
     </>
 }
