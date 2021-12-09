@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { getJobs, getStages, getStatus, submitAppInfo } from '../application/ApplicationManager'
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { getJobs, getStages, getStatus, submitAppInfo, updateApp } from '../application/ApplicationManager'
 
 
 
@@ -7,6 +8,8 @@ const FormAppInfo = ({ handleNext, handleBack, appData, jobData, handleAppData }
     const [stages, setStages] = useState([])
     const [status, setStatus] = useState([])
     const [jobs, setJobs] = useState([])
+    const history = useHistory()
+    const { applicationId } = useParams()
     
   
 
@@ -101,8 +104,14 @@ const FormAppInfo = ({ handleNext, handleBack, appData, jobData, handleAppData }
             onClick={evt => {
                 // Prevent form from being submitted
                 evt.preventDefault()
-                submitAppInfo(appData)
-                .then(() => handleNext())
+
+                if (applicationId) {
+                    updateApp(appData)
+                    .then(() => history.push("/"))
+                } else {
+                    submitAppInfo(appData)
+                    .then(() => handleNext())
+                }
             }}
             className="btn btn-2 btn-sep icon-create">Submit App Info</button>
     </form>

@@ -26,6 +26,17 @@ export const deleteApp = applicationId => {
         
 }
 
+export const updateApp = (app) => {
+    return fetch(`http://localhost:8000/applications/${app.id}`, {
+        method: "PUT",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tr_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(app)
+    })
+}
+
 export const getJobs = () => {
     return fetch("http://localhost:8000/jobposts", {
         headers:{

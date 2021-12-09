@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import FormJobInfo from "./FormJobInfo";
 import FormAppInfo from "./FormAppInfo";
 import Confirm from "./Confirm";
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { getAppById } from "../application/ApplicationManager";
 
 
 
 export const ApplicationForm = () => {
-  const { applicationId } = useParams
+  const { applicationId } = useParams()
+  const [activeStep, setActiveStep] = useState()
   const [jobData, setJobData] = useState({
     company: "",
     companyUrl: "",
@@ -26,11 +27,7 @@ export const ApplicationForm = () => {
     statusId: "",
     jobId: ""
   })
-  const [appTypeData, setAppTypeData] = useState({
-    applicationId: "",
-    jobTypeId: "",
-  })
-  const [activeStep, setActiveStep] = useState(1);
+  ;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -60,24 +57,21 @@ export const ApplicationForm = () => {
     useEffect(() => {
       if (applicationId) {
         setActiveStep(2)
-          getAppById(applicationId)
-           .then(data => setAppData({
-               ...data,
-               applicationId: data.id,
-               response: "False",
-               notes: data.notes,
-               dateApplied: data.date_applied,
-               stageId: data.stage,
-               statusId: data.status,
-               jobId: data.job_post
-           }))
+        getAppById(applicationId)
+        .then(data => setAppData({
+          ...data,
+          application: data.id,
+          response: "False",
+          notes: data.notes,
+          dateApplied: data.date_applied,
+          stageId: data.stage.id,
+          statusId: data.status.id,
+          jobId: data.job_post.id
+      }))
+      } else {
+        setActiveStep(1)
       }
-
   }, [applicationId])
-  
-
-
-
 
   switch (activeStep) {
    
@@ -96,7 +90,7 @@ export const ApplicationForm = () => {
     case 3:
       return (
         <div className="App">
-            <Confirm handleNext={handleNext} appData={appData} jobData={jobData} appTypeData={appTypeData} />
+            <Confirm handleNext={handleNext} appData={appData} jobData={jobData} />
         </div>
       );
     default:

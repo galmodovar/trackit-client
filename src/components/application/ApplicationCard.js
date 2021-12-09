@@ -8,14 +8,20 @@ import Button from '@mui/material/Button';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
 export const ApplicationCard = () => {
     const [ applications, setApplications ] = useState([])
+    const history = useHistory()
+
+    const fetchApplications = () => {
+        getApplications().then(data => setApplications(data))
+    }
 
     useEffect(() => {
-        getApplications().then(data => setApplications(data))
+        fetchApplications()
     }, [])
 
     return (
@@ -36,12 +42,16 @@ export const ApplicationCard = () => {
                         </CardContent>
                         <CardActions>
                             <Button type="submit" size="small"><MoreHorizOutlinedIcon/></Button>
-                            <Button type="submit" size="small"><EditOutlinedIcon/></Button>
+                            <Button type="submit" size="small"
+                                onClick={() => {
+                                    history.push({ pathname: `/applications/edit/${application.id}`})
+                                    }}><EditOutlinedIcon/></Button>
                             <Button type="submit" size="small"
                                 onClick={evt => {
                                     // Prevent form from being submitted
                                     evt.preventDefault()
                                     deleteApp(application.id)
+                                    .then(() => fetchApplications())
                                 }}><DeleteForeverOutlinedIcon/></Button>
                         </CardActions>
                       </Card>
