@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
-import { getJobs, getStages, getStatus, submitAppInfo, updateApp } from '../application/ApplicationManager'
+import { getJobs, getStages, getStatus, getTypes, submitAppInfo, updateApp } from '../application/ApplicationManager'
 
 
 
-const FormAppInfo = ({ handleNext, handleBack, appData, jobData, handleAppData }) => {
+const FormAppInfo = ({ handleNext, appData, handleAppData }) => {
     const [stages, setStages] = useState([])
     const [status, setStatus] = useState([])
     const [jobs, setJobs] = useState([])
+    const [types, setTypes] = useState([])
+    const [skills, setChosenSkills] = useState([])
     const history = useHistory()
     const { applicationId } = useParams()
     
+    useEffect(() => {
+        getTypes().then(data => setTypes(data))
+    }, [])
   
-
     useEffect(() => {
         getStages().then(data => setStages(data))
     }, [])
@@ -24,6 +28,20 @@ const FormAppInfo = ({ handleNext, handleBack, appData, jobData, handleAppData }
     useEffect(() => {
         getJobs().then(data => setJobs(data))
     }, [])
+
+    const typeChecker = (value) =>{
+        
+        const copy = skills
+        if (copy.includes(parseInt(value))){
+            const index = copy.indexOf(parseInt(value))
+            copy.splice(index, 1)
+            setChosenSkills(copy)
+        }else{
+            copy.push(parseInt(value))
+            setChosenSkills(copy)
+            
+        }
+    }
     
 
     return (
@@ -42,9 +60,9 @@ const FormAppInfo = ({ handleNext, handleBack, appData, jobData, handleAppData }
         <fieldset>
             <div className="form-group">
                 <label htmlFor="title">Date Applied: </label>
-                <input type="date" name="dateApplied" required className="form-control"
-                    value={appData.dateApplied}
-                    onChange={handleAppData('dateApplied')}
+                <input type="date" name="date_applied" required className="form-control"
+                    value={appData.date_applied}
+                    onChange={handleAppData('date_applied')}
                 />
             </div>
         </fieldset>
@@ -93,22 +111,48 @@ const FormAppInfo = ({ handleNext, handleBack, appData, jobData, handleAppData }
                 </select>
             </div>
         </fieldset>
-        <button type="submit"
-            onClick={evt => {
-                // Prevent form from being submitted
-                evt.preventDefault()
-                {handleBack()}
-            }}
-            className="btn btn-2 btn-sep icon-create">Previous</button>
+        <fieldset>
+            {/* <div className="form-group">
+                <label htmlFor="title">What skills are needed for this job?: </label>
+                        {
+                            types.map(type => (
+               
+                                <button type="submit" name='skills' className="btn btn-2 btn-sep icon-create"
+                                        value={ type.id } key={type.id}
+                                        onClick= {e => {
+                                            e.preventDefault()
+                                            typeChecker(type.id)
+                                            }
+                                        }>{type.job_type}
+                                </button>
+                                            
+                            ))
+                        }
+            </div> */}
+            <div className="form-group">
+                        {
+                            types.map(type => (<>
+                                <label id="skills" name="skills" value={type.id}> {type.job_type} </label>
+                                <input type="checkbox" name="skills" value={type.id}
+                               
+                                onChange={ (e) => {
+                                   // e.preventDefault()
+                                    typeChecker(type.id)
+                                }}></input>
+                            </>))}
+            </div>
+        </fieldset>
         <button type="submit"
             onClick={evt => {
                 // Prevent form from being submitted
                 evt.preventDefault()
 
                 if (applicationId) {
+                    appData.skills = skills
                     updateApp(appData)
                     .then(() => history.push("/"))
                 } else {
+                    appData.skills = skills
                     submitAppInfo(appData)
                     .then(() => handleNext())
                 }

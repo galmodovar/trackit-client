@@ -1,5 +1,6 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { AppDetails } from "./application/ApplicationDetails"
 import { ApplicationList } from "./application/ApplicationList"
 import  { ApplicationForm } from "./form/ApplicationForm"
 
@@ -18,6 +19,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/applications/edit/:applicationId">
                 <ApplicationForm />
+            </Route>
+            <Route exact path="/applications/:applicationId(\d+)">
+                <AppDetails />
             </Route>
         </main>
     </>

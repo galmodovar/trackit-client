@@ -41,7 +41,10 @@ export const ApplicationCard = () => {
                             <div className="application__status">Currently in {application.status.status}</div>
                         </CardContent>
                         <CardActions>
-                            <Button type="submit" size="small"><MoreHorizOutlinedIcon/></Button>
+                            <Button type="submit" size="small"
+                                onClick={() => {
+                                    history.push({ pathname: `/applications/${application.id}`})
+                                    }}><MoreHorizOutlinedIcon/></Button>
                             <Button type="submit" size="small"
                                 onClick={() => {
                                     history.push({ pathname: `/applications/edit/${application.id}`})

@@ -22,10 +22,11 @@ export const ApplicationForm = () => {
   const [appData, setAppData] = useState({
     notes: "",
     response: "False",
-    dateApplied: "",
+    date_applied: "",
     stageId: "",
     statusId: "",
-    jobId: ""
+    jobId: "",
+    skills: []
   })
   ;
 
@@ -59,14 +60,13 @@ export const ApplicationForm = () => {
         setActiveStep(2)
         getAppById(applicationId)
         .then(data => setAppData({
-          ...data,
-          application: data.id,
+          id: data.id,
           response: "False",
           notes: data.notes,
-          dateApplied: data.date_applied,
           stageId: data.stage.id,
           statusId: data.status.id,
-          jobId: data.job_post.id
+          jobId: data.job_post.id,
+          date_applied: data.date_applied
       }))
       } else {
         setActiveStep(1)
