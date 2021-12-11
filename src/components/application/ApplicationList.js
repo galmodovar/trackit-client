@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react"
-import { getApplications } from "./ApplicationManager.js"
+import React from "react"
 import { ApplicationCard } from "./ApplicationCard.js"
 import { useHistory } from "react-router"
 
@@ -9,18 +8,16 @@ export const ApplicationList = () => {
 
     return (
         <section>
-        <button className="btn btn-2 btn-sep icon-create"
-                onClick={() => {
-                    history.push({ pathname: "/applications/new" })
-                    }}>Add New Application
-        </button>
         <article className="applications">
+            <h1>Researching</h1>
             <ApplicationCard />
         </article>
         <article className="applications">
+            <h1>Applied</h1>
      
         </article>
         <article className="applications">
+            <h1>Finished</h1>
         
         </article>
         </section>

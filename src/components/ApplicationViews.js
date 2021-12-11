@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import { AppDetails } from "./application/ApplicationDetails"
 import { ApplicationList } from "./application/ApplicationList"
 import  { ApplicationForm } from "./form/ApplicationForm"
+import { JobCard } from './jobs/JobList'
 
 
 export const ApplicationViews = () => {
@@ -13,6 +14,9 @@ export const ApplicationViews = () => {
         }}>
             <Route exact path="/">
                 <ApplicationList />
+            </Route>
+            <Route exact path="/jobs">
+                <JobCard />
             </Route>
             <Route exact path="/applications/new">
                 <ApplicationForm />

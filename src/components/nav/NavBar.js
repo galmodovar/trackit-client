@@ -9,6 +9,14 @@ export const NavBar = () => {
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/">Applications</Link>
             </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to="/jobs">Jobs</Link>
+            </li>
+            <button className="btn btn-2 btn-sep icon-create"
+                onClick={() => {
+                    history.push({ pathname: "/applications/new" })
+                    }}>Add New Application
+            </button>
             {
                 (localStorage.getItem("tr_token") !== null) ?
                     <li className="navbar__item">
