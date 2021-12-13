@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
+import {  getSearchedApps } from "../application/ApplicationManager"
 import "./NavBar.css"
 
 export const NavBar = () => {
+    const [query, setQuery] = useState()
     const history = useHistory()
     return (
         <ul className="navbar">
@@ -17,6 +19,7 @@ export const NavBar = () => {
                     history.push({ pathname: "/applications/new" })
                     }}>Add New Application
             </button>
+            
             {
                 (localStorage.getItem("tr_token") !== null) ?
                     <li className="navbar__item">

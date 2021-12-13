@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getApplications, deleteApp } from "./ApplicationManager.js"
+import { getApplications, deleteApp, getSearchedApps } from "./ApplicationManager.js"
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,6 +14,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const ApplicationCard = () => {
     const [ applications, setApplications ] = useState([])
+    const [query, setQuery] = useState()
     const history = useHistory()
 
     const fetchApplications = () => {
@@ -25,6 +26,29 @@ export const ApplicationCard = () => {
     }, [])
 
     return (
+        <>
+        <form>
+                <label htmlFor="header-search">
+                    <span className="visually-hidden">Search</span>
+                </label>
+                    <input
+                        type="text"
+                        id="header-search"
+                        placeholder="Search"
+                        onChange={(event)=>
+                            setQuery(event.target.value)}                         
+                    />
+                <button type="submit" 
+                 onClick={evt => {
+                    // Prevent form from being submitted
+                    evt.preventDefault()
+                    getSearchedApps(query)
+                    .then(() =>setQuery(''));
+                    
+                }}>Search</button>
+            </form>
+        <h1>Researching</h1>
+
         <article className="applications">
             {
                 applications.map(application => {
@@ -62,6 +86,8 @@ export const ApplicationCard = () => {
                 })
             }
         </article>
+
+        </>
     )
 }
 

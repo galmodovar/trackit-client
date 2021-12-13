@@ -1,22 +1,22 @@
 import React from "react"
 import { ApplicationCard } from "./ApplicationCard.js"
-import { useHistory } from "react-router"
+import "./Application.css"
+
 
 export const ApplicationList = () => {
-    const history = useHistory()
+    
 
 
     return (
-        <section>
-        <article className="applications">
-            <h1>Researching</h1>
+        <section className="app-board">
+        <article className="application">
             <ApplicationCard />
         </article>
-        <article className="applications">
+        <article className="application">
             <h1>Applied</h1>
      
         </article>
-        <article className="applications">
+        <article className="application">
             <h1>Finished</h1>
         
         </article>

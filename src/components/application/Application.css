@@ -1,0 +1,5 @@
+.app-board {
+    display: flex;
+    justify-content: space-evenly;
+    
+}

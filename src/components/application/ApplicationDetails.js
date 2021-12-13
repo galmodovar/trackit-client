@@ -76,7 +76,7 @@ export const AppDetails = () => {
             onClick={evt => {
                 // Prevent form from being submitted
                 evt.preventDefault()
-                {history.push("/")}
+                history.push("/")
             }}
             className="btn btn-2 btn-sep icon-create">Finish</Button>
           </Dialog>

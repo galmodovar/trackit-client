@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
@@ -50,7 +50,7 @@ const Confirm = ({ appData, jobData }) => {
             onClick={evt => {
                 // Prevent form from being submitted
                 evt.preventDefault()
-                {history.push("/")}
+                history.push("/")
             }}
             className="btn btn-2 btn-sep icon-create">Finish</Button>
           </Dialog>

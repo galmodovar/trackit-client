@@ -6,13 +6,12 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 
 
 export const JobCard = () => {
     const [ Jobs, setJobs ] = useState([])
-    const history = useHistory()
 
     const fetchJobs = () => {
         getJobs().then(data => setJobs(data))

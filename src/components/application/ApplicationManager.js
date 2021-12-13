@@ -7,6 +7,15 @@ export const getApplications = () => {
         .then(response => response.json())
 }
 
+export const getSearchedApps = (search) => {
+    return fetch(`http://localhost:8000/applications?q=${search}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("tr_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const getAppById = (applicationId) => {
     return fetch(`http://localhost:8000/applications/${applicationId}`, {
         headers:{
