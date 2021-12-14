@@ -50,12 +50,6 @@ export const JobCard = () => {
                     );
                 })
             }
-            <Button type="submit" size="small"
-                                onClick={evt => {
-                                    // Prevent form from being submitted
-                                    evt.preventDefault()
-                                    .then(() => fetchJobs())
-                                }}><DeleteForeverOutlinedIcon/></Button>
         </article>
     )
 }

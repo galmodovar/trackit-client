@@ -1,10 +1,9 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link, useHistory } from "react-router-dom"
-import {  getSearchedApps } from "../application/ApplicationManager"
 import "./NavBar.css"
 
 export const NavBar = () => {
-    const [query, setQuery] = useState()
+    
     const history = useHistory()
     return (
         <ul className="navbar">

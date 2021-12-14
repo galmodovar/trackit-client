@@ -9,12 +9,13 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import "./Application.css"
 
 
 
 export const ApplicationCard = () => {
     const [ applications, setApplications ] = useState([])
-    const [query, setQuery] = useState()
+    const [query, setQuery] = useState('')
     const history = useHistory()
 
     const fetchApplications = () => {
@@ -22,41 +23,33 @@ export const ApplicationCard = () => {
     }
 
     useEffect(() => {
-        fetchApplications()
-    }, [])
+        if (query) {
+            getSearchedApps(query).then(data => setApplications(data))
+        } else {
+            fetchApplications()
+        }
+    }, [query])
 
     return (
         <>
         <form>
-                <label htmlFor="header-search">
-                    <span className="visually-hidden">Search</span>
-                </label>
-                    <input
-                        type="text"
-                        id="header-search"
-                        placeholder="Search"
-                        onChange={(event)=>
-                            setQuery(event.target.value)}                         
+            <input
+                type="text"
+                id="header-search"
+                placeholder="Search"
+                onChange={(event)=>                            
+                    setQuery(event.target.value)}                         
                     />
-                <button type="submit" 
-                 onClick={evt => {
-                    // Prevent form from being submitted
-                    evt.preventDefault()
-                    getSearchedApps(query)
-                    .then(() =>setQuery(''));
-                    
-                }}>Search</button>
+                
             </form>
-        <h1>Researching</h1>
-
-        <article className="applications">
+        
+        
+        <section className="app-board">
+        <article className="application">
+            <h1>Researching</h1>
             {
                 applications.map(application => {
-                    // return <section key={`application--${application.id}`} className="application">
-                    //     <div className="application__role">{application.job_post.role} by {application.job_post.company}</div>
-                    //     <div className="application__date">Date Applied: {application.date_applied}</div>
-                    //     <div className="application__status">Currently in {application.status.status}</div>
-                    // </section>
+                    
                     return (
                       <Card sx={{ minWidth: 275 }}>
                         <CardContent>
@@ -86,6 +79,15 @@ export const ApplicationCard = () => {
                 })
             }
         </article>
+        <article className="application">
+            <h1>Applied</h1>
+     
+        </article>
+        <article className="application">
+            <h1>Finished</h1>
+        
+        </article>
+        </section>
 
         </>
     )
