@@ -14,7 +14,7 @@ export const AppDetails = () => {
 
     useEffect(
         () => {
-            fetch(`http://localhost:8000/applications/${applicationId}`, {
+            fetch(`https://trackit-server-side.herokuapp.com/applications/${applicationId}`, {
                 headers:{
                     "Authorization": `Token ${localStorage.getItem("tr_token")}`
                 }

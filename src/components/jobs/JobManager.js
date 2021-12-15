@@ -1,5 +1,5 @@
 export const getJobs = () => {
-    return fetch("http://localhost:8000/jobposts", {
+    return fetch("https://trackit-server-side.herokuapp.com/jobposts", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
         }
@@ -8,7 +8,7 @@ export const getJobs = () => {
 }
 
 export const deleteJob = jobId => {
-    return fetch(`http://localhost:8000/jobposts/${jobId}`, {
+    return fetch(`https://trackit-server-side.herokuapp.com/jobposts/${jobId}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
