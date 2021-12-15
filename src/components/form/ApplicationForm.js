@@ -11,6 +11,7 @@ import { getAppById } from "../application/ApplicationManager";
 export const ApplicationForm = () => {
   const { applicationId } = useParams()
   const [activeStep, setActiveStep] = useState()
+  const [skills, setChosenSkills] = useState([])
   const [jobData, setJobData] = useState({
     company: "",
     companyUrl: "",
@@ -59,7 +60,9 @@ export const ApplicationForm = () => {
       if (applicationId) {
         setActiveStep(2)
         getAppById(applicationId)
-        .then(data => setAppData({
+        .then(data => {
+          setChosenSkills(data.skills.map(s => s.id))
+          setAppData({
           id: data.id,
           response: "False",
           notes: data.notes,
@@ -68,7 +71,7 @@ export const ApplicationForm = () => {
           jobId: data.job_post.id,
           date_applied: data.date_applied,
           skills: data.skills
-      }))
+      })})
       } else {
         setActiveStep(1)
       }
@@ -85,7 +88,7 @@ export const ApplicationForm = () => {
     case 2:
       return (
         <div className="App">
-            <FormAppInfo handleNext={handleNext} handleBack={handleBack} handleAppData={handleAppData} appData={appData} jobData={jobData} />
+            <FormAppInfo handleNext={handleNext} skills={skills} handleAppData={handleAppData} appData={appData} setChosenSkills={setChosenSkills} />
         </div>
       );
     case 3:
