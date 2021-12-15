@@ -134,7 +134,7 @@ const FormAppInfo = ({ handleNext, appData, handleAppData }) => {
                             types.map(type => (<>
                                 <label id="skills" name="skills" value={type.id}> {type.job_type} </label>
                                 <input type="checkbox" name="skills" value={type.id}
-                               checked={appData.skills?.some(skill => skill.id == type.id) }
+                               checked={appData.skills?.includes(type) }
                                 onChange={ (e) => {
                                    // e.preventDefault()
                                     typeChecker(type.id)
