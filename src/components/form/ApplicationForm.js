@@ -66,7 +66,8 @@ export const ApplicationForm = () => {
           stageId: data.stage.id,
           statusId: data.status.id,
           jobId: data.job_post.id,
-          date_applied: data.date_applied
+          date_applied: data.date_applied,
+          skills: data.skills
       }))
       } else {
         setActiveStep(1)

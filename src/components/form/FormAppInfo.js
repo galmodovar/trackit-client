@@ -31,16 +31,29 @@ const FormAppInfo = ({ handleNext, appData, handleAppData }) => {
 
     const typeChecker = (value) =>{
         
-        const copy = skills
-        if (copy.includes(parseInt(value))){
-            const index = copy.indexOf(parseInt(value))
-            copy.splice(index, 1)
-            setChosenSkills(copy)
-        }else{
-            copy.push(parseInt(value))
-            setChosenSkills(copy)
+        if (applicationId) {
+            const copy = appData.skills
+            if (copy.includes(parseInt(value))){
+                const index = copy.indexOf(parseInt(value))
+                copy.splice(index, 1)
+                setChosenSkills(copy)
+            }else{
+                copy.push(parseInt(value))
+                setChosenSkills(copy)  
+            }
+        } else {
             
+            const copy = skills
+            if (copy.includes(parseInt(value))){
+                const index = copy.indexOf(parseInt(value))
+                copy.splice(index, 1)
+                setChosenSkills(copy)
+            }else{
+                copy.push(parseInt(value))
+                setChosenSkills(copy)  
+            }
         }
+
     }
     
 
