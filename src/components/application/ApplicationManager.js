@@ -1,5 +1,5 @@
 export const getApplications = () => {
-    return fetch("http://localhost:8000/applications", {
+    return fetch("https://trackit-server-side.herokuapp.com/applications", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
         }
@@ -8,7 +8,7 @@ export const getApplications = () => {
 }
 
 export const getSearchedApps = (search) => {
-    return fetch(`http://localhost:8000/applications?q=${search}`, {
+    return fetch(`https://trackit-server-side.herokuapp.com/applications?q=${search}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
         }
@@ -17,7 +17,7 @@ export const getSearchedApps = (search) => {
 }
 
 export const getAppById = (applicationId) => {
-    return fetch(`http://localhost:8000/applications/${applicationId}`, {
+    return fetch(`https://trackit-server-side.herokuapp.com/applications/${applicationId}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
         }
@@ -26,7 +26,7 @@ export const getAppById = (applicationId) => {
 }
 
 export const deleteApp = applicationId => {
-    return fetch(`http://localhost:8000/applications/${applicationId}`, {
+    return fetch(`https://trackit-server-side.herokuapp.com/applications/${applicationId}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
@@ -36,7 +36,7 @@ export const deleteApp = applicationId => {
 }
 
 export const updateApp = (app) => {
-    return fetch(`http://localhost:8000/applications/${app.id}`, {
+    return fetch(`https://trackit-server-side.herokuapp.com/applications/${app.id}`, {
         method: "PUT",
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`,
@@ -47,7 +47,7 @@ export const updateApp = (app) => {
 }
 
 export const getJobs = () => {
-    return fetch("http://localhost:8000/jobposts", {
+    return fetch("https://trackit-server-side.herokuapp.com/jobposts", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
         }
@@ -56,7 +56,7 @@ export const getJobs = () => {
 }
 
 export const getStages = () => {
-    return fetch("http://localhost:8000/stages", {
+    return fetch("https://trackit-server-side.herokuapp.com/stages", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
         }
@@ -65,7 +65,7 @@ export const getStages = () => {
 }
 
 export const getStatus = () => {
-    return fetch("http://localhost:8000/status", {
+    return fetch("https://trackit-server-side.herokuapp.com/status", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
         }
@@ -74,7 +74,7 @@ export const getStatus = () => {
 }
 
 export const getTypes = () => {
-    return fetch("http://localhost:8000/jobtypes", {
+    return fetch("https://trackit-server-side.herokuapp.com/jobtypes", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
         }
@@ -83,7 +83,7 @@ export const getTypes = () => {
 }
 
 export const addType = typeId => {
-    return fetch(`http://localhost:8000/applications/${ typeId }/type`, {
+    return fetch(`https://trackit-server-side.herokuapp.com/applications/${ typeId }/type`, {
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
@@ -92,7 +92,7 @@ export const addType = typeId => {
 }
 
 export const removeType = typeId => {
-    return fetch(`http://localhost:8000/applications/${ typeId }/type`, {
+    return fetch(`https://trackit-server-side.herokuapp.com/applications/${ typeId }/type`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`
@@ -101,7 +101,7 @@ export const removeType = typeId => {
 }
 
 export const submitJobInfo = (job) => {
-    return fetch("http://localhost:8000/jobposts", {
+    return fetch("https://trackit-server-side.herokuapp.com/jobposts", {
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`,
@@ -112,7 +112,7 @@ export const submitJobInfo = (job) => {
 }
 
 export const submitAppInfo = (app) => {
-    return fetch("http://localhost:8000/applications", {
+    return fetch("https://trackit-server-side.herokuapp.com/applications", {
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem("tr_token")}`,
