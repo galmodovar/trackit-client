@@ -8,6 +8,19 @@ export const DashboardView = () => {
     const [status, setStatus] = useState([])
 
     //['Rejected', 'Applied', 'Applied', 'Applied']
+
+    // const occurrences = ['rejected', 'applied', 'applied', 'rejected', 'preparing'].reduce(function (acc, curr) {
+    //     return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+    //   }, []);
+      
+    //   console.log(occurrences) 
+      
+      
+    //   let result =  Object.values(occurrences)
+      
+    //   console.log(result)
+
+
     const data = {
         maintainAspectRatio: false,
         responsive: false,
