@@ -48,7 +48,7 @@ export const ApplicationCard = () => {
         <article className="application">
             <h1>Researching</h1>
             {
-                applications.map(application => {
+                applications?.map(application => {
                     
                     return (
                       <Card sx={{ minWidth: 275 }}>

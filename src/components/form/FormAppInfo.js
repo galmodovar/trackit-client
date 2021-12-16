@@ -4,12 +4,11 @@ import { getJobs, getStages, getStatus, getTypes, submitAppInfo, updateApp } fro
 
 
 
-const FormAppInfo = ({ handleNext, appData, handleAppData }) => {
+const FormAppInfo = ({ handleNext, appData, handleAppData, skills, setChosenSkills }) => {
     const [stages, setStages] = useState([])
     const [status, setStatus] = useState([])
     const [jobs, setJobs] = useState([])
     const [types, setTypes] = useState([])
-    const [skills, setChosenSkills] = useState([])
     const history = useHistory()
     const { applicationId } = useParams()
     
@@ -26,30 +25,36 @@ const FormAppInfo = ({ handleNext, appData, handleAppData }) => {
     }, [])
 
     useEffect(() => {
-        getJobs().then(data => setJobs(data))
+        getJobs().then(data => {
+            setJobs(data)})
     }, [])
 
-    const typeChecker = (value) =>{
+    const typeChecker = (e) =>{
+        debugger
         
         if (applicationId) {
-            const copy = appData.skills
-            if (copy.includes(parseInt(value))){
-                const index = copy.indexOf(parseInt(value))
+            const copy = [...skills]
+            if (copy.some(skill => skill === parseInt(e.target.value))){
+                document.getElementById(e.target.id).checked=false
+                const index = copy.indexOf(parseInt(e.target.value))
                 copy.splice(index, 1)
                 setChosenSkills(copy)
             }else{
-                copy.push(parseInt(value))
+                copy.push(parseInt(e.target.value))
+                document.getElementById(e.target.id).checked=true
                 setChosenSkills(copy)  
             }
         } else {
             
-            const copy = skills
-            if (copy.includes(parseInt(value))){
-                const index = copy.indexOf(parseInt(value))
+            const copy = [...skills]
+            if (copy.includes(parseInt(e.target.value))){
+                document.getElementById(e.target.id).checked=false
+                const index = copy.indexOf(parseInt(e.target.value))
                 copy.splice(index, 1)
                 setChosenSkills(copy)
             }else{
-                copy.push(parseInt(value))
+                copy.push(parseInt(e.target.value))
+                document.getElementById(e.target.id).checked=true
                 setChosenSkills(copy)  
             }
         }
@@ -146,11 +151,12 @@ const FormAppInfo = ({ handleNext, appData, handleAppData }) => {
                         {
                             types.map(type => (<>
                                 <label id="skills" name="skills" value={type.id}> {type.job_type} </label>
-                                <input type="checkbox" name="skills" value={type.id}
-                               checked={appData.skills?.some(skill => skill.id == type.id) }
+                                <input type="checkbox" name="skills" id={type.id} value={type.id}
+                               checked={skills?.some(skill => skill === type.id)}
+                                   
                                 onChange={ (e) => {
-                                   // e.preventDefault()
-                                    typeChecker(type.id)
+                                    //e.preventDefault()
+                                    typeChecker(e)
                                 }}></input>
                             </>))}
             </div>
@@ -161,8 +167,9 @@ const FormAppInfo = ({ handleNext, appData, handleAppData }) => {
                 evt.preventDefault()
 
                 if (applicationId) {
-                    appData.skills = skills
-                    updateApp(appData)
+
+                    
+                    updateApp(appData, skills)
                     .then(() => history.push("/"))
                 } else {
                     appData.skills = skills

@@ -35,7 +35,8 @@ export const deleteApp = applicationId => {
         
 }
 
-export const updateApp = (app) => {
+export const updateApp = (app, skills) => {
+    app.skills = skills
     return fetch(`https://trackit-server-side.herokuapp.com/applications/${app.id}`, {
         method: "PUT",
         headers:{
