@@ -1,14 +1,30 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { TrackIt } from './components/TrackIt';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+
+
+
+
+const theme = createTheme({
+  palette: {
+    type: "dark",
+  }
+})
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+    <ThemeProvider theme ={theme}>
+    <CssBaseline />
     <TrackIt />
+    </ThemeProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

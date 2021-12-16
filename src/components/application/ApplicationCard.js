@@ -52,12 +52,12 @@ export const ApplicationCard = () => {
                     
                     return (
                       <Card sx={{ minWidth: 275 }}>
-                        <CardContent>
+                        <CardContent style={{background: '#00897b'}}>
                             <div className="application__role">{application.job_post.role} by {application.job_post.company}</div>
                             <div className="application__date">Date Applied: {application.date_applied}</div>
                             <div className="application__status">Currently in {application.status.status}</div>
                         </CardContent>
-                        <CardActions>
+                        <CardActions style={{background: '#004d40'}} >
                             <Button type="submit" size="small"
                                 onClick={() => {
                                     history.push({ pathname: `/applications/${application.id}`})

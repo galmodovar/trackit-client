@@ -5,7 +5,7 @@ import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
 
-export const TrackIt = () => (
+export const TrackIt = () =>  (
     <>
         <Route render={() => {
             if (localStorage.getItem("tr_token")) {

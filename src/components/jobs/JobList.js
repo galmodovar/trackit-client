@@ -32,12 +32,12 @@ export const JobCard = () => {
                     // </section>
                     return (
                       <Card sx={{ minWidth: 275 }}>
-                        <CardContent>
+                        <CardContent style={{background: '#00897b'}}>
                             <div className="Job__role">{Job.role} by {Job.company}</div>
                             <div className="Job__date">Read About the company: {Job.company_url}</div>
                             <div className="Job__status">Job advertisement: {Job.role_url}</div>
                         </CardContent>
-                        <CardActions>
+                        <CardActions style={{background: '#004d40'}}>
                             <Button type="submit" size="small"
                                 onClick={evt => {
                                     // Prevent form from being submitted

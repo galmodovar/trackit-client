@@ -13,6 +13,9 @@ export const NavBar = () => {
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/jobs">Jobs</Link>
             </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to="/dashboard">Dashboard</Link>
+            </li>
             <button className="btn btn-2 btn-sep icon-create"
                 onClick={() => {
                     history.push({ pathname: "/applications/new" })

@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { AppDetails } from "./application/ApplicationDetails"
 import { ApplicationList } from "./application/ApplicationList"
+import { DashboardView } from "./dashboard/DashboardView"
 import  { ApplicationForm } from "./form/ApplicationForm"
 import { JobCard } from './jobs/JobList'
 
@@ -17,6 +18,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/jobs">
                 <JobCard />
+            </Route>
+            <Route exact path="/dashboard">
+                <DashboardView />
             </Route>
             <Route exact path="/applications/new">
                 <ApplicationForm />
