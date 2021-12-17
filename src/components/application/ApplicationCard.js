@@ -16,15 +16,15 @@ const history = useHistory()
 
 useEffect(() => {
     setColumns({
-        [1]: {
+        1: {
           name: "Researching",
           items: applications
         },
-        [2]: {
+        2: {
           name: "Applied",
           items: []
         },
-        [3]: {
+        3: {
           name: "Finished",
           items: []
         }
@@ -122,8 +122,8 @@ const onDragEnd = (result, columns, setColumns) => {
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "lightblue"
-                            : "lightgrey",
+                            ? "#004d40"
+                            : "#00897b",
                           padding: 4,
                           width: 250,
                           minHeight: 500
