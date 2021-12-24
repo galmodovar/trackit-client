@@ -1,37 +1,46 @@
-import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
+
 
 export const NavBar = () => {
-    
     const history = useHistory()
-    return (
-        <ul className="navbar">
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/">Applications</Link>
-            </li>
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/jobs">Jobs</Link>
-            </li>
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/dashboard">Dashboard</Link>
-            </li>
-            <button className="btn btn-2 btn-sep icon-create"
-                onClick={() => {
+    
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position='static' style={{ background: "#004d40" }} enableColorOnDark>
+        <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          TrackIt
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Link className="navbar__link" to="/">Applications</Link>
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Link className="navbar__link" to="/jobs">Jobs</Link>
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Link className="navbar__link" to="/dashboard">Dashboard</Link>
+          </Typography>
+            <Button style={{ color: "darkblue" }} onClick={() => {
                     history.push({ pathname: "/applications/new" })
                     }}>Add New Application
-            </button>
-            
+            </Button>
             {
                 (localStorage.getItem("tr_token") !== null) ?
-                    <li className="navbar__item">
-                        <button className="nav-link fakeLink"
+                        <Button style={{ color: "darkblue", marginLeft: 20}}
                             onClick={() => {
                                 localStorage.removeItem("tr_token")
                                 history.push({ pathname: "/" })
                             }}
-                        >Logout</button>
-                    </li> :
+                        >Logout</Button>
+                     :
                     <>
                         <li className="navbar__item">
                             <Link className="nav-link" to="/login">Login</Link>
@@ -40,6 +49,52 @@ export const NavBar = () => {
                             <Link className="nav-link" to="/register">Register</Link>
                         </li>
                     </>
-            }        </ul>
-    )
+            }
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
 }
+
+
+// export const NavBar = () => {
+    
+//     const history = useHistory()
+//     return (
+//         <ul className="navbar">
+//             <li className="navbar__item active">
+//                 <Link className="navbar__link" to="/">Applications</Link>
+//             </li>
+//             <li className="navbar__item active">
+//                 <Link className="navbar__link" to="/jobs">Jobs</Link>
+//             </li>
+//             <li className="navbar__item active">
+//                 <Link className="navbar__link" to="/dashboard">Dashboard</Link>
+//             </li>
+//             <Button className="btn btn-2 btn-sep icon-create"
+//                 onClick={() => {
+//                     history.push({ pathname: "/applications/new" })
+//                     }}>Add New Application
+//             </Button>
+            
+//             {
+//                 (localStorage.getItem("tr_token") !== null) ?
+//                     <li className="navbar__item">
+//                         <Button className="nav-link fakeLink"
+//                             onClick={() => {
+//                                 localStorage.removeItem("tr_token")
+//                                 history.push({ pathname: "/" })
+//                             }}
+//                         >Logout</Button>
+//                     </li> :
+//                     <>
+//                         <li className="navbar__item">
+//                             <Link className="nav-link" to="/login">Login</Link>
+//                         </li>
+//                         <li className="navbar__item">
+//                             <Link className="nav-link" to="/register">Register</Link>
+//                         </li>
+//                     </>
+//             }        </ul>
+//     )
+// }

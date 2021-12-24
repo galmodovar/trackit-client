@@ -10,8 +10,8 @@ import { JobCard } from './jobs/JobList'
 export const ApplicationViews = () => {
     return <>
         <main style={{
-            margin: "5rem 2rem",
-            lineHeight: "1.75rem"
+            margin: "0.5rem 1rem",
+            lineHeight: "2.75rem"
         }}>
             <Route exact path="/">
                 <ApplicationList />

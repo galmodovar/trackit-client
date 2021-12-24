@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -12,16 +11,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 
-const theme = createTheme({
+
+const darkTheme = createTheme({
   palette: {
-    type: "dark",
-  }
-})
+    type: 'dark',
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-    <ThemeProvider theme ={theme}>
+    <ThemeProvider theme={darkTheme}>
     <CssBaseline />
     <TrackIt />
     </ThemeProvider>

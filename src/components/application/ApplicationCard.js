@@ -122,8 +122,8 @@ const onDragEnd = (result, columns, setColumns) => {
                         ref={provided.innerRef}
                         style={{
                           background: snapshot.isDraggingOver
-                            ? "#004d40"
-                            : "#00897b",
+                            ? "#00897b"
+                            : "#004d40",
                           padding: 4,
                           width: 250,
                           minHeight: 500
@@ -148,23 +148,23 @@ const onDragEnd = (result, columns, setColumns) => {
                                       margin: "0 0 8px 0",
                                       minHeight: "50px",
                                       backgroundColor: snapshot.isDragging
-                                        ? '#00897b'
-                                        : '#004d40',
+                                        ? '#004d40'
+                                        : '#00897b',
                                       color: "white",
                                       ...provided.draggableProps.style
                                     }}
                                   >
                                     <div className="application__role">{item.job_post.role} by {item.job_post.company}</div>
                                     <div className="application__date">Date Applied: {item.date_applied}</div>
-                                    <Button type="submit" size="small"
+                                    <Button type="submit" size="small" style={{ color: "darkblue" }}
                                         onClick={() => {
                                         history.push({ pathname: `/applications/${item.id}`})
                                         }}><MoreHorizOutlinedIcon/></Button>
-                                    <Button type="submit" size="small"
+                                    <Button type="submit" size="small" style={{ color: "darkblue" }}
                                         onClick={() => {
                                         history.push({ pathname: `/applications/edit/${item.id}`})
                                         }}><EditOutlinedIcon/></Button>
-                                    <Button type="submit" size="small"
+                                    <Button type="submit" size="small" style={{ color: "darkblue" }}
                                     onClick={evt => {
                                     // Prevent form from being submitted
                                     evt.preventDefault()
