@@ -30,7 +30,6 @@ const FormAppInfo = ({ handleNext, appData, handleAppData, skills, setChosenSkil
     }, [])
 
     const typeChecker = (e) =>{
-        debugger
         
         if (applicationId) {
             const copy = [...skills]
