@@ -23,12 +23,12 @@ export const DashboardView = () => {
 
     const data = {
         maintainAspectRatio: false,
-        responsive: false,
+        responsive: true,
         labels: status?.map(s => s.status),
         datasets: [
           {
-            data: ['1', '2', '3', '2'],
-            backgroundColor: 'black',
+            data: ['1', '2', '5', '2', '1', '3'],
+            backgroundColor: ["#4a0c07","#0b4a07","#073f4a","#0a074a","#3c074a", "#047d63"],
             hoverBackgroundColor: 'white'
           }
         ]
@@ -60,12 +60,12 @@ export const DashboardView = () => {
 
 
     return (
-        <div className="App">
+        <div>
       
-      <div >
+      <div className="Chart" style={{maxHeight:500, maxWidth: 500}} >
          <Doughnut data={data} options={options} /> 
         
-        <div id="legend" />
+        <div id="legend"  />
       </div>
     </div>
 
