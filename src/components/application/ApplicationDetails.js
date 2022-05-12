@@ -45,7 +45,7 @@ export const AppDetails = () => {
               </ListItem>
               <ListItem>
                 <ListItemText primary="Company Site" secondary={application?.job_post?.company_url} />
-                <Link className="Job__link" to={{ pathname: `${application?.job_post?.company_url}`, }} target="_blank"><p class='Company__link'>Read About the Company</p></Link>
+                <Link className="Job__link" to={{ pathname: `https://${application?.job_post?.company_url}`, }} target="_blank">Read About the Company</Link>
               </ListItem>
               <ListItem>
                 <ListItemText primary="Role" secondary={application?.job_post?.role} />
