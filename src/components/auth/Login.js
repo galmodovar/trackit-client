@@ -46,11 +46,11 @@ export const Login = () => {
                     <h1>TrackIt</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputUsername"> Username </label>
+                        <label htmlFor="inputUsername"/>
                         <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <label htmlFor="inputPassword"> Password </label>
+                        <label htmlFor="inputPassword"/>
                         <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
                     </fieldset>
                     <fieldset style={{
@@ -58,10 +58,8 @@ export const Login = () => {
                     }}>
                         <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
                     </fieldset>
+                    <Link to="/register">Not a member yet?</Link>
                 </form>
-            </section>
-            <section className="link--register">
-                <Link to="/register">Not a member yet?</Link>
             </section>
         </main>
     )

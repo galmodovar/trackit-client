@@ -4,7 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText } from '@material-ui/core/';
 import Button from '@material-ui/core/Button';
-import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useParams, Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { fontFamily } from '@mui/system';
 
 
 export const AppDetails = () => {
@@ -44,6 +45,7 @@ export const AppDetails = () => {
               </ListItem>
               <ListItem>
                 <ListItemText primary="Company Site" secondary={application?.job_post?.company_url} />
+                <Link className="Job__link" to={{ pathname: `${application?.job_post?.company_url}`, }} target="_blank"><p class='Company__link'>Read About the Company</p></Link>
               </ListItem>
               <ListItem>
                 <ListItemText primary="Role" secondary={application?.job_post?.role} />

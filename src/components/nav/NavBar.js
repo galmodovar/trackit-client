@@ -16,25 +16,22 @@ export const NavBar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static' style={{ background: "#004d40" }} enableColorOnDark>
         <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontFamily: 'Spectral', fontSize: '2rem' }}>
           TrackIt
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link className="navbar__link" to="/">Applications</Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link className="navbar__link" to="/jobs">Jobs</Link>
-          </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Link className="navbar__link" to="/dashboard">Dashboard</Link>
           </Typography>
-            <Button style={{ color: "darkblue" }} onClick={() => {
+            <Button style={{ color: "darkblue", fontFamily: 'Spectral' }} onClick={() => {
                     history.push({ pathname: "/applications/new" })
                     }}>Add New Application
             </Button>
             {
                 (localStorage.getItem("tr_token") !== null) ?
-                        <Button style={{ color: "darkblue", marginLeft: 20}}
+                        <Button style={{ color: "darkblue", fontFamily: 'Spectral', marginLeft: 20}}
                             onClick={() => {
                                 localStorage.removeItem("tr_token")
                                 history.push({ pathname: "/" })
@@ -56,45 +53,3 @@ export const NavBar = () => {
   );
 }
 
-
-// export const NavBar = () => {
-    
-//     const history = useHistory()
-//     return (
-//         <ul className="navbar">
-//             <li className="navbar__item active">
-//                 <Link className="navbar__link" to="/">Applications</Link>
-//             </li>
-//             <li className="navbar__item active">
-//                 <Link className="navbar__link" to="/jobs">Jobs</Link>
-//             </li>
-//             <li className="navbar__item active">
-//                 <Link className="navbar__link" to="/dashboard">Dashboard</Link>
-//             </li>
-//             <Button className="btn btn-2 btn-sep icon-create"
-//                 onClick={() => {
-//                     history.push({ pathname: "/applications/new" })
-//                     }}>Add New Application
-//             </Button>
-            
-//             {
-//                 (localStorage.getItem("tr_token") !== null) ?
-//                     <li className="navbar__item">
-//                         <Button className="nav-link fakeLink"
-//                             onClick={() => {
-//                                 localStorage.removeItem("tr_token")
-//                                 history.push({ pathname: "/" })
-//                             }}
-//                         >Logout</Button>
-//                     </li> :
-//                     <>
-//                         <li className="navbar__item">
-//                             <Link className="nav-link" to="/login">Login</Link>
-//                         </li>
-//                         <li className="navbar__item">
-//                             <Link className="nav-link" to="/register">Register</Link>
-//                         </li>
-//                     </>
-//             }        </ul>
-//     )
-// }

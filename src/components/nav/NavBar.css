@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,300&display=swap');
+
 .navbar {
     display: flex;
     flex-wrap: nowrap;
@@ -11,6 +13,11 @@
 
 .navbar__link {
     text-decoration: none;
-    color:darkblue
+    color:darkblue;
+    margin-left: 2rem
+}
+
+div {
+    font-family: 'Spectral', serif;
 }
 

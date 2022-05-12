@@ -4,7 +4,6 @@ import { AppDetails } from "./application/ApplicationDetails"
 import { ApplicationList } from "./application/ApplicationList"
 import { DashboardView } from "./dashboard/DashboardView"
 import  { ApplicationForm } from "./form/ApplicationForm"
-import { JobCard } from './jobs/JobList'
 
 
 export const ApplicationViews = () => {
@@ -15,9 +14,6 @@ export const ApplicationViews = () => {
         }}>
             <Route exact path="/">
                 <ApplicationList />
-            </Route>
-            <Route exact path="/jobs">
-                <JobCard />
             </Route>
             <Route exact path="/dashboard">
                 <DashboardView />
