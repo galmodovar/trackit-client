@@ -7,11 +7,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-
-
-
-
-
 const darkTheme = createTheme({
   palette: {
     type: 'dark',

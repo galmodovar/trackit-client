@@ -25,8 +25,7 @@ const FormAppInfo = ({ handleNext, appData, handleAppData, skills, setChosenSkil
     }, [])
 
     useEffect(() => {
-        getJobs().then(data => {
-            setJobs(data)})
+        getJobs().then(data => {setJobs(data)})
     }, [])
 
     const typeChecker = (e) =>{
@@ -129,30 +128,12 @@ const FormAppInfo = ({ handleNext, appData, handleAppData, skills, setChosenSkil
             </div>
         </fieldset>
         <fieldset>
-            {/* <div className="form-group">
-                <label htmlFor="title">What skills are needed for this job?: </label>
-                        {
-                            types.map(type => (
-               
-                                <button type="submit" name='skills' className="btn btn-2 btn-sep icon-create"
-                                        value={ type.id } key={type.id}
-                                        onClick= {e => {
-                                            e.preventDefault()
-                                            typeChecker(type.id)
-                                            }
-                                        }>{type.job_type}
-                                </button>
-                                            
-                            ))
-                        }
-            </div> */}
             <div className="form-group">
                         {
                             types.map(type => (<>
                                 <label id="skills" name="skills" value={type.id}> {type.job_type} </label>
                                 <input type="checkbox" name="skills" id={type.id} value={type.id}
-                               checked={skills?.some(skill => skill === type.id)}
-                                   
+                               checked={skills?.some(skill => skill === type.id)}  
                                 onChange={ (e) => {
                                     //e.preventDefault()
                                     typeChecker(e)

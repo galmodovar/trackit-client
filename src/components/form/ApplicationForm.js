@@ -35,8 +35,6 @@ export const ApplicationForm = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-
- 
   const handleJobData = input => e => {
     const { value } = e.target;
 
@@ -45,6 +43,7 @@ export const ApplicationForm = () => {
       [input]: value
   }));
   }
+  
   const handleAppData = input => e => {
     const { value } = e.target;
 

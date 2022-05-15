@@ -5,13 +5,16 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText } from '@material-ui/core/';
 import Button from '@material-ui/core/Button';
 import { useHistory, useParams, Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { fontFamily } from '@mui/system';
 
 
 export const AppDetails = () => {
     const [ application, setApplications ] = useState({})
     const { applicationId } = useParams()
     const history = useHistory()
+
+    const text = {
+      fontFamily: 'Spectral'
+    }
 
     useEffect(
         () => {
@@ -41,36 +44,68 @@ export const AppDetails = () => {
             <AppBar title="Confirm User Data" />
             <List>
               <ListItem>
-                <ListItemText primary="Company" secondary={application?.job_post?.company} />
+                <ListItemText primary="Company" 
+                secondary={application?.job_post?.company} 
+                secondaryTypographyProps={{style: text}}  
+                />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Company Site" secondary={application?.job_post?.company_url} />
+                <ListItemText primary="Company Site" 
+                secondary={application?.job_post?.company_url}
+                secondaryTypographyProps={{style: text}}
+                 />
                 <Link className="Job__link" to={{ pathname: `https://${application?.job_post?.company_url}`, }} target="_blank">Read About the Company</Link>
               </ListItem>
               <ListItem>
-                <ListItemText primary="Role" secondary={application?.job_post?.role} />
+                <ListItemText primary="Role" 
+                secondary={application?.job_post?.role}
+                secondaryTypographyProps={{style: text}}
+                 />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Job Ad" secondary={application?.job_post?.role_url} />
+                <ListItemText primary="Job Ad"
+                 secondary={application?.job_post?.role_url}
+                 secondaryTypographyProps={{style: text}}
+                  />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Location" secondary={application?.job_post?.location} />
+                <ListItemText primary="Location" 
+                secondary={application?.job_post?.location}
+                secondaryTypographyProps={{style: text}}
+                 />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Industry" secondary={application?.job_post?.industry} />
+                <ListItemText primary="Industry" 
+                secondary={application?.job_post?.industry} 
+                secondaryTypographyProps={{style: text}}
+                />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Notes" secondary={application?.notes} />
+                <ListItemText primary="Notes" 
+                secondary={application?.notes}
+                secondaryTypographyProps={{style: text}}
+                 />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Stage" secondary={application?.stage?.stage} />
+                <ListItemText primary="Stage" 
+                secondary={application?.stage?.stage}
+                secondaryTypographyProps={{style: text}}
+                 />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Status" secondary={application?.status?.status} />
+                <ListItemText primary="Status" 
+                secondary={application?.status?.status}
+                secondaryTypographyProps={{style: text}}
+                 />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Skills" secondary={application?.skills?.map(skill=> skill.job_type)} />
-              </ListItem>
+                <ListItemText primary="Skills" 
+                secondary={
+                application?.skills?.map((skill, i) => ` ( ${i+1}. ${skill.job_type} ) `)
+                }
+                secondaryTypographyProps={{style: text}}
+                />
+                </ListItem>
             </List>
 
             <br />
