@@ -3,7 +3,9 @@
 
 TrackIt is an app that allows job seekers to track their applications.
 
-The app allows users to create application entries and track their status for jobs for which they have applied.  
+The app allows users to create application entries and track their status for jobs for which they have applied.
+
+<img src='./public/6hpkkq.gif'>
 
 
 ## Installing TrackIt locally:
@@ -34,6 +36,11 @@ https://dbdiagram.io/d/6196b56902cf5d186b5da4ce
 
 Wireframe: 
 https://miro.com/app/board/uXjVOeffgwE=/?invite_link_id=244799600905
+
+Live site:
+https://trackit-client-side.herokuapp.com/
+
+
 
 
 ## Documentation
